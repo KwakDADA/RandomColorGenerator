@@ -8,12 +8,37 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    private let backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .blue
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        setUI()
+        setConstraints()
     }
-
+    
+    // MARK: - Set UI
+    private func setUI() {
+        view.backgroundColor = .white
+        view.addSubview(backgroundView)
+    }
+    
+    // MARK: - Set Constraints
+    private func setConstraints() {
+        // 배경 뷰
+        NSLayoutConstraint.activate([
+            backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
 
 }
 
