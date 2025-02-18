@@ -9,11 +9,22 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK: - Components
     private let backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .blue
+        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    private let contentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     private let colorInfoLabel: UILabel = {
@@ -22,7 +33,34 @@ class ViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private let buttonStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private let changeColorButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Change Color", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let resetButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Reset Button", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
+    // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,7 +77,20 @@ class ViewController: UIViewController {
     // MARK: - Set Add View
     private func setAddView() {
         view.addSubview(backgroundView)
-        backgroundView.addSubview(colorInfoLabel)
+        
+        [
+            contentStackView
+        ].forEach { backgroundView.addSubview($0) }
+        
+        [
+            colorInfoLabel,
+            buttonStackView
+        ].forEach { contentStackView.addArrangedSubview($0) }
+        
+        [
+            changeColorButton,
+            resetButton
+        ].forEach { buttonStackView.addArrangedSubview($0) }
     }
     
     // MARK: - Set Constraints
@@ -52,12 +103,11 @@ class ViewController: UIViewController {
             backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        // 색상 정보 라벨
+        // 컨텐츠 스택뷰
         NSLayoutConstraint.activate([
-            colorInfoLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            colorInfoLabel.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor)
+            contentStackView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            contentStackView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor)
         ])
     }
-
 }
 
