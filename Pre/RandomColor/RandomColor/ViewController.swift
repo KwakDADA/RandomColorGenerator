@@ -121,6 +121,9 @@ class ViewController: UIViewController {
     private func setAddActions() {
         // 색상 변경 버튼
         changeColorButton.addTarget(self, action: #selector(generateRandomColor), for: .touchUpInside)
+        
+        // 초기화 버튼
+        resetButton.addTarget(self, action: #selector(resetColor), for: .touchUpInside)
     }
     
     @objc func generateRandomColor() {
@@ -131,5 +134,10 @@ class ViewController: UIViewController {
         
         backgroundView.backgroundColor = randomColor
         colorInfoLabel.text = "R: \(Int(255 * randomRed)), G: \(Int(255 * randomGreen)), B: \(Int(255 * randomBlue))"
+    }
+    
+    @objc func resetColor() {
+        backgroundView.backgroundColor = .white
+        colorInfoLabel.text = "R: 255, G: 255, B: 255"
     }
 }
