@@ -130,5 +130,6 @@ class ViewController: UIViewController {
         let randomColor = UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
         
         backgroundView.backgroundColor = randomColor
+        colorInfoLabel.text = "R: \(Int(255 * randomRed)), G: \(Int(255 * randomGreen)), B: \(Int(255 * randomBlue))"
     }
 }
