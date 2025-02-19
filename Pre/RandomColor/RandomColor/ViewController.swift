@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     
     // MARK: - Components
+    // 배경 뷰
     private let backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -17,6 +18,7 @@ class ViewController: UIViewController {
         return view
     }()
     
+    // 컨텐츠 스택뷰
     private let contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -27,6 +29,7 @@ class ViewController: UIViewController {
         return stackView
     }()
     
+    // 색상 정보 라벨
     private let colorInfoLabel: UILabel = {
        let label = UILabel()
         label.text = "R: 255, G: 255, B: 255"
@@ -34,6 +37,7 @@ class ViewController: UIViewController {
         return label
     }()
     
+    // 버튼 스택뷰
     private let buttonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -44,6 +48,7 @@ class ViewController: UIViewController {
         return stackView
     }()
     
+    // 배경색 변경 버튼
     private let changeColorButton: UIButton = {
         let button = UIButton()
         button.setTitle("Change Color", for: .normal)
@@ -52,6 +57,7 @@ class ViewController: UIViewController {
         return button
     }()
     
+    // 초기화 버튼
     private let resetButton: UIButton = {
         let button = UIButton()
         button.setTitle("Reset Button", for: .normal)
