@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     // 색상 정보 라벨
     private let colorInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "R: 255, G: 255, B: 255"
+        label.text = RGBLabelConstants.defaultColorInfo
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     // 배경색 변경 버튼
     private let changeColorButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Change Color", for: .normal)
+        button.setTitle(ButtonTitleConstants.changeColor, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -60,13 +60,13 @@ class ViewController: UIViewController {
     // 초기화 버튼
     private let resetButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Reset Button", for: .normal)
+        button.setTitle(ButtonTitleConstants.reset, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
-    // MARK: - View Did Load
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -81,13 +81,11 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
     }
     
-    // MARK: - Set Add View
+    // MARK: - Set Add Views
     private func setAddView() {
         view.addSubview(backgroundView)
         
-        [
-            contentStackView
-        ].forEach { backgroundView.addSubview($0) }
+        backgroundView.addSubview(contentStackView)
         
         [
             colorInfoLabel,
@@ -117,27 +115,21 @@ class ViewController: UIViewController {
         ])
     }
     
-    // MARK: - Set Add Actions
+    // MARK: - Set Actions
     private func setAddActions() {
-        // 색상 변경 버튼
         changeColorButton.addTarget(self, action: #selector(generateRandomColor), for: .touchUpInside)
-        
-        // 초기화 버튼
         resetButton.addTarget(self, action: #selector(resetColor), for: .touchUpInside)
     }
     
+    // MARK: Actions
     @objc func generateRandomColor() {
-        let randomRed = CGFloat.random(in: 0...1)
-        let randomGreen = CGFloat.random(in: 0...1)
-        let randomBlue = CGFloat.random(in: 0...1)
-        let randomColor = UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
-        
+        let randomColor: UIColor = .random
         backgroundView.backgroundColor = randomColor
-        colorInfoLabel.text = "R: \(Int(255 * randomRed)), G: \(Int(255 * randomGreen)), B: \(Int(255 * randomBlue))"
+        colorInfoLabel.updateColorInfo(using: randomColor)
     }
     
     @objc func resetColor() {
         backgroundView.backgroundColor = .white
-        colorInfoLabel.text = "R: 255, G: 255, B: 255"
+        colorInfoLabel.text = RGBLabelConstants.defaultColorInfo
     }
 }
