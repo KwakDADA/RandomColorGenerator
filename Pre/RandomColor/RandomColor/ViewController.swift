@@ -115,5 +115,12 @@ class ViewController: UIViewController {
             contentStackView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor)
         ])
     }
+    
+    @objc func generateRandomColor() {
+        let randomRed = CGFloat.random(in: 0...1)
+        let randomGreen = CGFloat.random(in: 0...1)
+        let randomBlue = CGFloat.random(in: 0...1)
+        let randomColor = UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
+    }
 }
 
