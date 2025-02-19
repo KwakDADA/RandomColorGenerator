@@ -1,5 +1,5 @@
 
-# RandomColor
+# RandomColorGenerator
 
 ![Simulator Screen Recording - iPhone 16 Pro - 2025-02-19 at 17 42 59](https://github.com/user-attachments/assets/bd167dcc-8dc3-4fae-b414-8c230d0713e4)
 
