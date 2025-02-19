@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     
     // 색상 정보 라벨
     private let colorInfoLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "R: 255, G: 255, B: 255"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -73,6 +73,7 @@ class ViewController: UIViewController {
         setUI()
         setAddView()
         setConstraints()
+        setAddActions()
     }
     
     // MARK: - Set UI
@@ -116,11 +117,18 @@ class ViewController: UIViewController {
         ])
     }
     
+    // MARK: - Set Add Actions
+    private func setAddActions() {
+        // 색상 변경 버튼
+        changeColorButton.addTarget(self, action: #selector(generateRandomColor), for: .touchUpInside)
+    }
+    
     @objc func generateRandomColor() {
         let randomRed = CGFloat.random(in: 0...1)
         let randomGreen = CGFloat.random(in: 0...1)
         let randomBlue = CGFloat.random(in: 0...1)
         let randomColor = UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
+        
+        backgroundView.backgroundColor = randomColor
     }
 }
-
